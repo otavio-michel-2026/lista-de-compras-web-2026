@@ -1,6 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using ListaDeCompras.WebApp.Compartilhado;
 
-app.MapGet("/", () => "Hello World!");
+namespace ListaDeCompras.WebApp;
 
-app.Run();
+public partial class Program
+{
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddPresentation();
+
+        var app = builder.Build();
+
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.MapDefaultControllerRoute();
+
+        app.Run();
+    }
+}
