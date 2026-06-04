@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Compartilhado\Views\" />
+    <Folder Include="ModuloProduto\" />
   </ItemGroup>
 
 </Project>
