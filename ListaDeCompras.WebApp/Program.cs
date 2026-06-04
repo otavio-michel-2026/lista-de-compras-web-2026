@@ -9,6 +9,8 @@ public partial class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddPresentation();
+        builder.Services.AddServices();
+        builder.Services.AddRepositories();
 
         var app = builder.Build();
 
