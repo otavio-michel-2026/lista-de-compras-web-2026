@@ -8,11 +8,11 @@ public class Produto : EntidadeBase<Produto>
 {
     public string Nome { get; set; } = string.Empty;
     public Categoria Categoria { get; set; } = null!;
-    public string UnidadeDeMedida { get; set; } = string.Empty;
+    public UnidadeDeMedida UnidadeDeMedida { get; set; }
     public decimal Preco { get; set; }
 
     public Produto() { }
-    public Produto(string nome, Categoria categoria, string unidadeDeMedida, decimal preco)
+    public Produto(string nome, Categoria categoria, UnidadeDeMedida unidadeDeMedida, decimal preco)
     {
         Nome = nome;
         Categoria = categoria;

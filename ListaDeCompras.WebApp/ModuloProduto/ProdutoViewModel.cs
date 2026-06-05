@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ListaDeCompras.WebApp.ModuloProduto;
 //Apresentação
 
 public record OpcaoCategoriaViewModel(
-    string Id,
-    string Etiqueta
+    Guid Id,
+    string Nome
 );
 public record CadastrarProdutoViewModel
 (
@@ -21,7 +22,7 @@ public record CadastrarProdutoViewModel
     Guid CategoriaId,
 
     [Required(ErrorMessage = "O campo \"Unidade de medida\" deve ser preenchido")]
-    string UnidadeDeMedida,
+    UnidadeDeMedida UnidadeDeMedida,
 
     [Required(ErrorMessage = "O campo \"Preco\" deve ser preenchido")]
     decimal Preco
@@ -36,7 +37,7 @@ public record EditarProdutoViewModel
     List<OpcaoCategoriaViewModel> Categorias,
 
     [Required(ErrorMessage = "O campo \"Unidade de medida\" deve ser preenchido")]
-    string UnidadeDeMedida,
+    UnidadeDeMedida UnidadeDeMedida,
 
     [Required(ErrorMessage = "O campo \"Preco\" deve ser preenchido")]
     decimal Preco,
@@ -49,7 +50,7 @@ public record ListarProdutoViewModel
 
     string CategoriaNome,
 
-    string UnidadeDeMedida,
+    UnidadeDeMedida UnidadeDeMedida,
 
     decimal Preco,
 
@@ -61,7 +62,7 @@ public record ExcluirProdutoViewModel
 
     string CategoriaNome,
 
-    string UnidadeDeMedida,
+    UnidadeDeMedida UnidadeDeMedida,
 
     decimal Preco,
 

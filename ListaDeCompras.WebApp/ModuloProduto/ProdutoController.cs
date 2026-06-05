@@ -27,7 +27,7 @@ namespace ListaDeCompras.WebApp.ModuloProduto
                 string.Empty,
                 SelecionarCategorias(),
                 Guid.Empty,
-                string.Empty,
+                0,
                 0
             );
 
@@ -72,23 +72,23 @@ namespace ListaDeCompras.WebApp.ModuloProduto
         }
 
         [HttpPost]
-        public ActionResult Editar(EditarProdutoViewModel vm)
-        {
-            if (!ModelState.IsValid)
-                return View(vm with { Categorias = SelecionarCategorias() });
+        // public ActionResult Editar(EditarProdutoViewModel vm)
+        // {
+        //     if (!ModelState.IsValid)
+        //         return View(vm with { Categorias = SelecionarCategorias() });
 
-            var dto = mapeador.Map<EditarProdutoDto>(vm);
+        //     var dto = mapeador.Map<DetalhesProdutoDto>(vm);
 
-            Result resultado = servicoProduto.Editar(dto);
+        //     Result resultado = servicoProduto.Editar(dto);
 
-            if (resultado.IsFailed)
-            {
-                ModelState.AddModelError(resultado);
-                return View(vm with { Categorias = SelecionarCategorias() });
-            }
+        //     if (resultado.IsFailed)
+        //     {
+        //         ModelState.AddModelError(resultado);
+        //         return View(vm with { Categorias = SelecionarCategorias() });
+        //     }
 
-            return RedirectToAction(nameof(Listar));
-        }
+        //     return RedirectToAction(nameof(Listar));
+        // }
 
         [HttpGet]
         public ActionResult Excluir(Guid id)
@@ -123,7 +123,7 @@ namespace ListaDeCompras.WebApp.ModuloProduto
         {
             List<ListarCategoriaDto> dtos = servicoCategoria.SelecionarTodos();
 
-            return mapeador.Map<List<OpcaoCategoriaViewModel>>(dtos);
+            return dtos.Select(dto => mapeador.Map<OpcaoCategoriaViewModel>(dto)).ToList();
         }
     }
 }
