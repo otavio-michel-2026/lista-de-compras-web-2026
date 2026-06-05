@@ -16,14 +16,15 @@ public record EditarProdutoDto(
 );
 public record DetalhesProdutoDto(
     string Nome,
-    string Categoria,
+    string CategoriaNome,
+    Guid CategoriaId,
     string UnidadeDeMedida,
     decimal Preco,
     Guid Id
 );
 public record ListarProdutoDto(
     string Nome,
-    string Categoria,
+    string CategoriaNome,
     string UnidadeDeMedida,
     decimal Preco,
     Guid Id

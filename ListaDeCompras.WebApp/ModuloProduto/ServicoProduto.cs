@@ -66,9 +66,12 @@ public class ServicoProduto
         Produto? produto = repositorioProduto.Selecionar(id);
 
         if (produto == null)
-            return Result.Fail("Caixa não encontrada.");
+            return Result.Fail("Produto não encontrado.");
 
-        repositorioCategoria.Excluir(id);
+        bool conseguiuExcluir = repositorioProduto.Excluir(id);
+
+        if (!conseguiuExcluir)
+            return Result.Fail("Produto não encontrado.");
 
         return Result.Ok();
     }
@@ -89,7 +92,7 @@ public class ServicoProduto
         if (produto == null)
             return Result.Fail("produto não encontrado.");
 
-        return Result.Ok(new DetalhesProdutoDto(produto.Nome, produto.Categoria.Nome, produto.UnidadeDeMedida, produto.Preco, produto.Id));
+        return Result.Ok(new DetalhesProdutoDto(produto.Nome, produto.Categoria.Nome, produto.Categoria.Id, produto.UnidadeDeMedida, produto.Preco, produto.Id));
     }
     private static Result Falha(string campo, string mensagem)
     {
