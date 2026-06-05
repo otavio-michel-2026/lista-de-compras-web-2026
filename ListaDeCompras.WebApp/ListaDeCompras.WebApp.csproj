@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="ModuloCategoria\Views\" />
+    <Folder Include="ModuloProduto\Views\" />
   </ItemGroup>
 
   <ItemGroup>

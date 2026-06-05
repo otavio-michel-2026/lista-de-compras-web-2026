@@ -1,5 +1,6 @@
 using ListaDeCompras.WebApp.Compartilhado.ModuloBase;
 using ListaDeCompras.WebApp.ModuloCategoria;
+using ListaDeCompras.WebApp.ModuloProduto;
 
 namespace ListaDeCompras.WebApp.Compartilhado;
 
@@ -23,6 +24,7 @@ public static class InjecaoDependencia
         services.AddAutoMapper(config =>
         {
             //config.AddProfile<(*)Profile>();
+            config.AddProfile<ProdutoProfile>();
             config.AddProfile<CategoriaProfile>();
         });
     }
@@ -40,12 +42,14 @@ public static class InjecaoDependencia
         });
         //services.AddScoped<IRepositorio(*), Repositorio(*)>();
         services.AddScoped<IRepositorioCategoria, RepositorioCategoria>();
+        services.AddScoped<IRepositorioProduto, RepositorioProduto>();
     }
 
     // Camada de Aplicação
     public static void AddServices(this IServiceCollection services)
     {
         //services.AddScoped<Servico(*)>();
+        services.AddScoped<ServicoProduto>();
         services.AddScoped<ServicoCategoria>();
     }
 }
