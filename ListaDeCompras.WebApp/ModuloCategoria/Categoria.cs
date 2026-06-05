@@ -8,7 +8,7 @@ public class Categoria : EntidadeBase<Categoria>
 {
     public string Nome { get; set; } = string.Empty;
     public string Cor { get; set; } = string.Empty;
-    List<Produto> Produtos { get; set; } = [];
+    public List<Produto> Produtos { get; set; } = [];
     public Categoria() { }
     public Categoria(string nome, string cor)
     {
