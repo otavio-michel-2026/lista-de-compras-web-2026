@@ -14,16 +14,16 @@ public static class InjecaoDependencia
             options.ViewLocationFormats.Clear();
 
             // Views dos módulos: /ModuloCaixa/Apresentacao/Views/Listar.cshtml
-            options.ViewLocationFormats.Add("/Modulo{1}/Apresentacao/Views/{0}.cshtml");
+            options.ViewLocationFormats.Add("/Modulo{1}/Views/{0}.cshtml");
 
             // Views compartilhadas: /Compartilhado/Apresentacao/Views/_Layout.cshtml
-            options.ViewLocationFormats.Add("/Compartilhado/Apresentacao/Views/{0}.cshtml");
+            options.ViewLocationFormats.Add("/Compartilhado/Views/{0}.cshtml");
         });
 
-        services.AddAutoMapper(conf =>
+        services.AddAutoMapper(config =>
         {
             //config.AddProfile<(*)Profile>();
-            // config.AddProfile<(*)Profile>();
+            config.AddProfile<CategoriaProfile>();
         });
     }
 
