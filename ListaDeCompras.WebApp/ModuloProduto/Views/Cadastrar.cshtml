@@ -25,7 +25,7 @@
             <option value="">Selecione uma categoria</option>
             @foreach (OpcaoCategoriaViewModel categoria in Model.Categorias ?? new List<OpcaoCategoriaViewModel>())
             {
-                <option value="@categoria.Id">@categoria.Etiqueta</option>
+                <option value="@categoria.Id">@categoria.Nome</option>
             }
         </select>
         <span asp-validation-for="CategoriaId" class="text-danger small fw-semibold"></span>
@@ -33,7 +33,9 @@
 
     <div class="mb-3">
         <label asp-for="UnidadeDeMedida" class="form-label fw-semibold text-primary text-uppercase small">Unidade de Medida</label>
-        <input asp-for="UnidadeDeMedida" type="text" class="form-control">
+        <select asp-for="UnidadeDeMedida" asp-items="Html.GetEnumSelectList<UnidadeDeMedida>()" class="form-select">
+            <option value="">Selecione uma Unidade de medida</option>
+        </select>
         <span asp-validation-for="UnidadeDeMedida" class="text-danger small fw-semibold"></span>
     </div>
 
