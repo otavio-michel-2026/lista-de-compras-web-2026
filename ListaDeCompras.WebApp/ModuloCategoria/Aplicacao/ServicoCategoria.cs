@@ -18,7 +18,7 @@ public class ServicoCategoria
         this.mapeador = mapeador;
     }
 
-    public Result Cadastrar(CadastrarCategoriaDto dto)
+    public Result Cadastrar(CategoriaDto dto)
     {
         if (repositorioCategoria.Registros.Any(c => string.Equals(c.Nome, dto.Nome, StringComparison.OrdinalIgnoreCase)))
             return Falha("Nome", "Já existe uma categoria com esse nome.");
@@ -33,7 +33,7 @@ public class ServicoCategoria
         return Result.Ok();
     }
 
-    public Result Editar(EditarCategoriaDto dto)
+    public Result Editar(CategoriaDto dto)
     {
         if (repositorioCategoria.Selecionar(c => c.Id != dto.Id).Any(c => string.Equals(c.Nome, dto.Nome, StringComparison.OrdinalIgnoreCase)))
             return Falha("Nome", "Já existe uma categoria com esse nome.");
@@ -63,23 +63,23 @@ public class ServicoCategoria
         return Result.Ok();
     }
 
-    public List<ListarCategoriaDto> SelecionarTodos()
+    public List<CategoriaDto> SelecionarTodos()
     {
         List<Categoria> categorias = repositorioCategoria.Selecionar();
 
         return categorias
-            .Select(c => new ListarCategoriaDto(c.Id, c.Nome, c.Cor, c.Produtos.Count))
+            .Select(c => new CategoriaDto(c.Nome, c.Cor, c.Produtos.Count, c.Id))
             .ToList();
     }
 
-    public Result<DetalhesCategoriaDto> SelecionarPorId(Guid id)
+    public Result<CategoriaDto> SelecionarPorId(Guid id)
     {
         Categoria? categoria = repositorioCategoria.Selecionar(id);
 
         if (categoria == null)
             return Result.Fail("Categoria não encontrada.");
 
-        return Result.Ok(new DetalhesCategoriaDto(categoria.Id, categoria.Nome, categoria.Cor, categoria.Produtos.Count));
+        return Result.Ok(new CategoriaDto(categoria.Nome, categoria.Cor, categoria.Produtos.Count, categoria.Id));
     }
     private static Result Falha(string campo, string mensagem)
     {

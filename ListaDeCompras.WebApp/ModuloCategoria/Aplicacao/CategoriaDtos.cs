@@ -1,26 +1,10 @@
 namespace ListaDeCompras.WebApp.ModuloCategoria;
 //Aplicação
 
-public record CadastrarCategoriaDto(
+public record CategoriaDto(
     string Nome,
     string Cor,
-    int QtdProduto
+    int QtdProduto,
+    Guid Id = new Guid()
 );
-public record EditarCategoriaDto(
-    Guid Id,
-    string Nome,
-    string Cor,
-    int QtdProduto
-);
-public record DetalhesCategoriaDto(
-    Guid Id,
-    string Nome,
-    string Cor,
-    int QtdProduto
-);
-public record ListarCategoriaDto(
-    Guid Id,
-    string Nome,
-    string Cor,
-    int QtdProduto
-);
+

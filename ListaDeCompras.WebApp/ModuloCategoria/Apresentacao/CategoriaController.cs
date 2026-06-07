@@ -13,14 +13,14 @@ public class CategoriaController(ServicoCategoria servicoCategoria, IMapper mape
     {
         var dtos = servicoCategoria.SelecionarTodos();
 
-        var listarVms = mapeador.Map<List<ListarCategoriaViewModel>>(dtos);
+        var listarVms = mapeador.Map<List<CategoriaViewModel>>(dtos);
 
         return View(listarVms);
     }
     [HttpGet]
     public ActionResult Cadastrar()
     {
-        CadastrarCategoriaViewModel cadastrarVm = new(
+        CategoriaViewModel cadastrarVm = new(
             string.Empty,
             string.Empty,
             0
@@ -29,12 +29,12 @@ public class CategoriaController(ServicoCategoria servicoCategoria, IMapper mape
         return View(cadastrarVm);
     }
     [HttpPost]
-    public ActionResult Cadastrar(CadastrarCategoriaViewModel vm)
+    public ActionResult Cadastrar(CategoriaViewModel vm)
     {
         if (!ModelState.IsValid)
             return View(vm);
 
-        var dto = mapeador.Map<CadastrarCategoriaDto>(vm);
+        var dto = mapeador.Map<CategoriaDto>(vm);
 
         Result resultado = servicoCategoria.Cadastrar(dto);
 
@@ -61,17 +61,17 @@ public class CategoriaController(ServicoCategoria servicoCategoria, IMapper mape
 
         var dto = resultado.Value;
 
-        var vm = mapeador.Map<EditarCategoriaViewModel>(dto);
+        var vm = mapeador.Map<CategoriaViewModel>(dto);
 
         return View(vm);
     }
     [HttpPost]
-    public ActionResult Editar(EditarCategoriaViewModel vm)
+    public ActionResult Editar(CategoriaViewModel vm)
     {
         if (!ModelState.IsValid)
             return View(vm);
 
-        var dto = mapeador.Map<EditarCategoriaDto>(vm);
+        var dto = mapeador.Map<CategoriaDto>(vm);
 
         Result resultado = servicoCategoria.Editar(dto);
 
@@ -97,12 +97,12 @@ public class CategoriaController(ServicoCategoria servicoCategoria, IMapper mape
 
         var dto = resultado.Value;
 
-        var vm = mapeador.Map<ExcluirCategoriaViewModel>(dto);
+        var vm = mapeador.Map<CategoriaViewModel>(dto);
 
         return View(vm);
     }
     [HttpPost]
-    public ActionResult Excluir(ExcluirCategoriaViewModel vm)
+    public ActionResult Excluir(CategoriaViewModel vm)
     {
         Result resultado = servicoCategoria.Excluir(vm.Id);
 
