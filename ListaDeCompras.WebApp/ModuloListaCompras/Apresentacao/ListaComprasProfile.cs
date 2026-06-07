@@ -9,8 +9,10 @@ public class ListaComprasProfile : Profile
     {
         CreateMap<DetalhesListaComprasDto, ListarListaComprasViewModel>();
         CreateMap<DetalhesListaComprasDto, EditarListaComprasViewModel>();
+        CreateMap<DetalhesListaComprasDto, ExcluirListaComprasViewModel>();
 
         CreateMap<CadastrarListaComprasViewModel, CadastrarListaComprasDto>();
         CreateMap<EditarListaComprasViewModel, EditarListaComprasDto>();
+        CreateMap<ExcluirListaComprasViewModel, DetalhesListaComprasDto>();
     }
 }

@@ -33,6 +33,20 @@ public class ServicoListaCompras
         return Result.Ok();
     }
 
+    public Result Excluir(Guid id)
+    {
+        var lista = repositorioLista.Selecionar(id);
+
+        if (lista is null)
+            return Result.Fail("Lista de compras não encontrada.");
+        if (lista.TemItens)
+            return Result.Fail("Não é possível remover uma lista quem tem itens.");
+
+        repositorioLista.Excluir(id);
+
+        return Result.Ok();
+    }
+
     public List<DetalhesListaComprasDto> Selecionar()
     {
         return repositorioLista.Registros.Select(lc => new DetalhesListaComprasDto(lc.Id, lc.Nome, lc.DataCriacao, lc.TotalItens, lc.StatusLista)).ToList();

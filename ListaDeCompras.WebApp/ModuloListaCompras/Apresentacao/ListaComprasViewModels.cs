@@ -23,3 +23,11 @@ public record EditarListaComprasViewModel(
     [StringLength(100, MinimumLength = 3, ErrorMessage = "O campo \"Nome\" deve conter entre 3 e 100 caracteres.")]
     string Nome
 );
+
+public record ExcluirListaComprasViewModel(
+    Guid Id,
+    string Nome,
+    DateTime DataCriacao,
+    int Quantidade,
+    StatusLista StatusLista
+);

@@ -78,4 +78,35 @@ public class ListaComprasController(ServicoListaCompras servicoLista, IMapper ma
 
         return RedirectToAction(nameof(Listar));
     }
+
+    [HttpGet]
+    public ActionResult Excluir(Guid id)
+    {
+        var resultado = servicoLista.Selecionar(id);
+
+        if (resultado.IsFailed)
+        {
+            TempData.AddErrorMessage(resultado);
+            return RedirectToAction(nameof(Listar));
+        }
+
+        var dto = resultado.Value;
+
+        var vm = mapeador.Map<ExcluirListaComprasViewModel>(dto);
+
+        return View(vm);
+    }
+
+    [HttpPost]
+    public ActionResult Excluir(ExcluirListaComprasViewModel vm)
+    {
+        var dto = mapeador.Map<DetalhesListaComprasDto>(vm);
+
+        var resultado = servicoLista.Excluir(vm.Id);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
+
+        return RedirectToAction(nameof(Listar));
+    }
 }
