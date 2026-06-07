@@ -41,4 +41,41 @@ public class ListaComprasController(ServicoListaCompras servicoLista, IMapper ma
 
         return RedirectToAction(nameof(Listar));
     }
+
+    [HttpGet]
+    public ActionResult Editar(Guid id)
+    {
+        var resultado = servicoLista.Selecionar(id);
+
+        if (resultado.IsFailed)
+        {
+            TempData.AddErrorMessage(resultado);
+            return RedirectToAction(nameof(Listar));
+        }
+
+        var dto = resultado.Value;
+
+        var vm = mapeador.Map<EditarListaComprasViewModel>(dto);
+
+        return View(vm);
+    }
+
+    [HttpPost]
+    public ActionResult Editar(EditarListaComprasViewModel vm)
+    {
+        if (!ModelState.IsValid)
+            return View(vm);
+
+        var dto = mapeador.Map<EditarListaComprasDto>(vm);
+
+        var resultado = servicoLista.Editar(dto);
+
+        if (resultado.IsFailed)
+        {
+            ModelState.AddModelError(resultado);
+            return View(vm);
+        }
+
+        return RedirectToAction(nameof(Listar));
+    }
 }

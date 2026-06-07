@@ -12,3 +12,8 @@ public record DetalhesListaComprasDto(
 public record CadastrarListaComprasDto(
     string Nome
 );
+
+public record EditarListaComprasDto(
+    Guid Id,
+    string Nome
+);
