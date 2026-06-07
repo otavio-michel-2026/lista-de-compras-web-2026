@@ -8,16 +8,18 @@ public class ProdutoProfile : Profile
 {
     public ProdutoProfile()
     {
-        CreateMap<ListarProdutoDto, ListarProdutoViewModel>();
-        CreateMap<ListarCategoriaDto, OpcaoCategoriaViewModel>();
+        CreateMap<ListarProdutoDto, ProdutoMostrarViewModel>();
 
-        CreateMap<CadastrarProdutoViewModel, CadastrarProdutoDto>();
-        CreateMap<EditarProdutoViewModel, EditarProdutoDto>();
+        CreateMap<ProdutoViewModel, CadastrarProdutoDto>();
 
-        CreateMap<DetalhesProdutoDto, EditarProdutoViewModel>()
+        CreateMap<DetalhesProdutoDto, ProdutoViewModel>()
             .ForCtorParam("Categorias", opt => opt.MapFrom(_ => new List<OpcaoCategoriaViewModel>()));
 
-        CreateMap<DetalhesProdutoDto, ExcluirProdutoViewModel>();
+        CreateMap<ProdutoViewModel, EditarProdutoDto>();
+
+        CreateMap<DetalhesProdutoDto, ProdutoMostrarViewModel>();
+
+        CreateMap<ListarCategoriaDto, OpcaoCategoriaViewModel>();
     }
 }
 

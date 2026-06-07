@@ -3,7 +3,7 @@
     ViewBag.Titulo = "Edição de Produto";
 }
 
-@model EditarProdutoViewModel;
+@model ProdutoViewModel;
 
 @if (Model.Categorias == null || Model.Categorias.Count == 0)
 {
@@ -20,15 +20,15 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Categorias" class="form-label fw-semibold text-primary text-uppercase small">Categoria</label>
-        <select asp-for="Categorias" class="form-select">
+        <label asp-for="CategoriaId" class="form-label fw-semibold text-primary text-uppercase small">Categoria</label>
+        <select asp-for="CategoriaId" class="form-select">
             <option value="">Selecione uma categoria</option>
             @foreach (OpcaoCategoriaViewModel categoria in Model.Categorias ?? new List<OpcaoCategoriaViewModel>())
             {
                 <option value="@categoria.Id">@categoria.Nome</option>
             }
         </select>
-        <span asp-validation-for="Categorias" class="text-danger small fw-semibold"></span>
+        <span asp-validation-for="CategoriaId" class="text-danger small fw-semibold"></span>
     </div>
 
     <div class="mb-3">

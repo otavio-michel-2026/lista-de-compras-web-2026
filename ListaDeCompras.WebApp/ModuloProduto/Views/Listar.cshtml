@@ -3,7 +3,7 @@
     ViewBag.Titulo = "Listagem de Produtos";
 }
 
-@model List<ListarProdutoViewModel>;
+@model List<ProdutoMostrarViewModel>;
 
 <a class="btn btn-outline-primary rounded-pill px-4 mb-3" asp-action="Cadastrar">Cadastrar Novo</a>
 
@@ -35,7 +35,7 @@ else
                 </tr>
             </thead>
             <tbody>
-                @foreach (ListarProdutoViewModel p in Model)
+                @foreach (ProdutoMostrarViewModel p in Model)
                 {
                     <tr>
                         <td>@p.Id</td>

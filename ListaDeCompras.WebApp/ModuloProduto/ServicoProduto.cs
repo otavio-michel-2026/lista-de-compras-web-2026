@@ -22,12 +22,12 @@ public class ServicoProduto
     public Result Cadastrar(CadastrarProdutoDto dto)
     {
         if (repositorioProduto.Registros.Any(c => string.Equals(c.Nome, dto.Nome, StringComparison.OrdinalIgnoreCase) && c.Categoria.Id == dto.CategoriaId))
-            return Falha("Nome", "Já existe um produto com esse nome nessa categoria.");
+            return Falha(dto.Nome, "Já existe um produto com esse nome nessa categoria.");
 
         Categoria? categoria = repositorioCategoria.Selecionar(dto.CategoriaId);
 
         if (categoria is null)
-            return Falha("CategoriaId", "Categoria nao Encontrada");
+            return Falha(nameof(dto.CategoriaId), "Categoria nao Encontrada");
 
         Produto novoProduto = new(
             dto.Nome,

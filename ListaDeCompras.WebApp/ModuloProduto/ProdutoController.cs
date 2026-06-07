@@ -15,7 +15,7 @@ namespace ListaDeCompras.WebApp.ModuloProduto
         {
             var dtos = servicoProduto.SelecionarTodos();
 
-            var listarVms = mapeador.Map<List<ListarProdutoViewModel>>(dtos);
+            var listarVms = mapeador.Map<List<ProdutoMostrarViewModel>>(dtos);
 
             return View(listarVms);
         }
@@ -23,7 +23,7 @@ namespace ListaDeCompras.WebApp.ModuloProduto
         [HttpGet]
         public ActionResult Cadastrar()
         {
-            var cadastrarVm = new CadastrarProdutoViewModel(
+            var cadastrarVm = new ProdutoViewModel(
                 string.Empty,
                 SelecionarCategorias(),
                 Guid.Empty,
@@ -35,7 +35,7 @@ namespace ListaDeCompras.WebApp.ModuloProduto
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(CadastrarProdutoViewModel vm)
+        public ActionResult Cadastrar(ProdutoViewModel vm)
         {
             if (!ModelState.IsValid)
                 return View(vm with { Categorias = SelecionarCategorias() });
@@ -66,29 +66,28 @@ namespace ListaDeCompras.WebApp.ModuloProduto
                 return RedirectToAction(nameof(Listar));
             }
 
-            var vm = mapeador.Map<EditarProdutoViewModel>(resultado.Value) with { Categorias = SelecionarCategorias() };
+            var vm = mapeador.Map<ProdutoViewModel>(resultado.Value);
 
-            return View(vm);
+            return View(vm with { Categorias = SelecionarCategorias() });
         }
-
         [HttpPost]
-        // public ActionResult Editar(EditarProdutoViewModel vm)
-        // {
-        //     if (!ModelState.IsValid)
-        //         return View(vm with { Categorias = SelecionarCategorias() });
+        public ActionResult Editar(ProdutoViewModel vm)
+        {
+            if (!ModelState.IsValid)
+                return View(vm with { Categorias = SelecionarCategorias() });
 
-        //     var dto = mapeador.Map<DetalhesProdutoDto>(vm);
+            var dto = mapeador.Map<EditarProdutoDto>(vm);
 
-        //     Result resultado = servicoProduto.Editar(dto);
+            Result resultado = servicoProduto.Editar(dto);
 
-        //     if (resultado.IsFailed)
-        //     {
-        //         ModelState.AddModelError(resultado);
-        //         return View(vm with { Categorias = SelecionarCategorias() });
-        //     }
+            if (resultado.IsFailed)
+            {
+                ModelState.AddModelError(resultado);
+                return View(vm with { Categorias = SelecionarCategorias() });
+            }
 
-        //     return RedirectToAction(nameof(Listar));
-        // }
+            return RedirectToAction(nameof(Listar));
+        }
 
         [HttpGet]
         public ActionResult Excluir(Guid id)
@@ -102,14 +101,13 @@ namespace ListaDeCompras.WebApp.ModuloProduto
                 return RedirectToAction(nameof(Listar));
             }
 
-            ExcluirProdutoViewModel vm =
-                mapeador.Map<ExcluirProdutoViewModel>(resultado.Value);
+            var vm = mapeador.Map<ProdutoMostrarViewModel>(resultado.Value);
 
             return View(vm);
         }
 
         [HttpPost]
-        public ActionResult Excluir(ExcluirProdutoViewModel vm)
+        public ActionResult Excluir(ProdutoMostrarViewModel vm)
         {
             Result resultado = servicoProduto.Excluir(vm.Id);
 
