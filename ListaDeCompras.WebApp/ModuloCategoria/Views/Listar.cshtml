@@ -3,7 +3,7 @@
     ViewBag.Titulo = "Listagem de Categorias";
 }
 
-@model List<ListarCategoriaViewModel>;
+@model List<CategoriaViewModel>;
 
 
 <a class="btn btn-outline-primary rounded-pill px-4 mb-3" asp-action="Cadastrar">Cadastrar Novo</a>
@@ -24,7 +24,7 @@
 else
 {
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-2">
-        @foreach (ListarCategoriaViewModel c in Model)
+        @foreach (CategoriaViewModel c in Model)
         {
             <div class="col">
                 <div class="card h-100">
