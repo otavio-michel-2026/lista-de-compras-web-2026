@@ -19,7 +19,7 @@ public class ProdutoProfile : Profile
 
         CreateMap<DetalhesProdutoDto, ProdutoMostrarViewModel>();
 
-        CreateMap<ListarCategoriaDto, OpcaoCategoriaViewModel>();
+        CreateMap<CategoriaDto, OpcaoCategoriaViewModel>();
     }
 }
 

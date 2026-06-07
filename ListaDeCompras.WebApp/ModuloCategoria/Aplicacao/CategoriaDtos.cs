@@ -7,4 +7,3 @@ public record CategoriaDto(
     int QtdProduto,
     Guid Id = new Guid()
 );
-

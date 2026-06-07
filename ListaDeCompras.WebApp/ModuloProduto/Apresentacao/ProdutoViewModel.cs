@@ -9,24 +9,6 @@ public record OpcaoCategoriaViewModel(
     Guid Id,
     string Nome
 );
-// public record CadastrarProdutoViewModel
-// (
-//     [Required(ErrorMessage = "O campo \"Nome\" deve ser preenchido")]
-//     [StringLength(100, MinimumLength =2, ErrorMessage = "O campo \"Nome\" deve conter no maximo 100 caracteres e no minimo 2")]
-//     string Nome,
-
-//     [ValidateNever]
-//     List<OpcaoCategoriaViewModel> Categorias,
-
-//     [Required(ErrorMessage = "O campo \"Categoria\" deve ser preenchido")]
-//     Guid CategoriaId,
-
-//     [Required(ErrorMessage = "O campo \"Unidade de medida\" deve ser preenchido")]
-//     UnidadeDeMedida UnidadeDeMedida,
-
-//     [Required(ErrorMessage = "O campo \"Preco\" deve ser preenchido")]
-//     decimal Preco
-// );
 public record ProdutoViewModel
 (
     [Required(ErrorMessage = "O campo \"Nome\" deve ser preenchido")]
@@ -47,18 +29,7 @@ public record ProdutoViewModel
 
     Guid Id = new Guid()
 );
-// public record ListarProdutoViewModel
-// (
-//     string Nome,
 
-//     string CategoriaNome,
-
-//     UnidadeDeMedida UnidadeDeMedida,
-
-//     decimal Preco,
-
-//     Guid Id
-// );
 public record ProdutoMostrarViewModel
 (
     string Nome,

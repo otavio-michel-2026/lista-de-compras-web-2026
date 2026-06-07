@@ -119,7 +119,7 @@ namespace ListaDeCompras.WebApp.ModuloProduto
 
         private List<OpcaoCategoriaViewModel> SelecionarCategorias()
         {
-            List<ListarCategoriaDto> dtos = servicoCategoria.SelecionarTodos();
+            List<CategoriaDto> dtos = servicoCategoria.SelecionarTodos();
 
             return dtos.Select(dto => mapeador.Map<OpcaoCategoriaViewModel>(dto)).ToList();
         }
