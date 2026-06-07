@@ -9,3 +9,6 @@ public record DetalhesListaComprasDto(
     int Quantidade,
     StatusLista StatusLista
 );
+public record CadastrarListaComprasDto(
+    string Nome
+);

@@ -1,3 +1,4 @@
+using FluentResults;
 using ListaDeCompras.WebApp.ModuloListaCompras.Dominio;
 
 namespace ListaDeCompras.WebApp.ModuloListaCompras.Aplicacao;
@@ -9,6 +10,15 @@ public class ServicoListaCompras
     public ServicoListaCompras(IRepositorioListaCompras repositorioLista)
     {
         this.repositorioLista = repositorioLista;
+    }
+
+    public Result Cadastrar(CadastrarListaComprasDto dto)
+    {
+        var lista = new ListaCompras(dto.Nome);
+        
+        repositorioLista.Cadastrar(lista);
+
+        return Result.Ok();
     }
 
     public List<DetalhesListaComprasDto> Selecionar()
