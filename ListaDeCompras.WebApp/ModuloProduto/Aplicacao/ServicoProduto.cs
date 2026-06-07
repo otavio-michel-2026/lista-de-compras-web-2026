@@ -36,6 +36,8 @@ public class ServicoProduto
             dto.Preco
         );
 
+        categoria.AdicionarProduto(novoProduto);
+
         repositorioProduto.Cadastrar(novoProduto);
 
         return Result.Ok();
@@ -68,6 +70,7 @@ public class ServicoProduto
         if (produto == null)
             return Result.Fail("Produto não encontrado.");
 
+        produto.Categoria.RetirarProduto(produto);
         bool conseguiuExcluir = repositorioProduto.Excluir(id);
 
         if (!conseguiuExcluir)
