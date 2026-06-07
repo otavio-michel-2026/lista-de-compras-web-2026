@@ -23,9 +23,7 @@ public class ListaCompras : EntidadeBase<ListaCompras>
             if (Itens.Count == 0)
                 return StatusLista.Aberta;
 
-            return Itens.All(i => i.Concluido)
-                ? StatusLista.Concluida
-                : StatusLista.Aberta;
+            return Itens.All(i => i.Concluido) ? StatusLista.Concluida : StatusLista.Aberta;
         }
     }
 
