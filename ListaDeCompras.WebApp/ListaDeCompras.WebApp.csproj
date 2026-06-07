@@ -13,6 +13,10 @@
 
   <ItemGroup>
     <Folder Include="ModuloCategoria\Views\" />
+    <Folder Include="ModuloListaCompras\Aplicacao\" />
+    <Folder Include="ModuloListaCompras\Apresentacao\" />
+    <Folder Include="ModuloListaCompras\Apresentacao\Views\" />
+    <Folder Include="ModuloListaCompras\Infra\" />
     <Folder Include="ModuloProduto\Views\" />
   </ItemGroup>
 
