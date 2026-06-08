@@ -103,8 +103,6 @@ public class ListaComprasController(ServicoListaCompras servicoLista, ServicoPro
     [HttpPost]
     public ActionResult Excluir(ExcluirListaComprasViewModel vm)
     {
-        var dto = mapeador.Map<DetalhesListaComprasDto>(vm);
-
         var resultado = servicoLista.Excluir(vm.Id);
 
         if (resultado.IsFailed)
