@@ -156,7 +156,7 @@ public class ListaComprasController(ServicoListaCompras servicoLista, ServicoPro
             if (resultado.TemErroDeCampo())
             {
                 ModelState.AddModelError(resultado);
-                return View(vm with { Produtos = SelecionarProdutosNaLista(id) });
+                return View(vm with { Produtos = SelecionarProdutos() });
             }
 
             TempData.AddErrorMessage(resultado);
