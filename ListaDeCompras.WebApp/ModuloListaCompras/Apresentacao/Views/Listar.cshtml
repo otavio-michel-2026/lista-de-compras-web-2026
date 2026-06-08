@@ -30,7 +30,7 @@ else
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3">
                             <h5 class="card-title mb-0">@lc.Nome</h5>
-                            <span class="badge text-bg-primary rounded-pill">@lc.Id</span>
+                            <span class="text-secondary fw-semibold small">@lc.Id</span>
                         </div>
 
                         <dl class="row g-2 mb-4">
@@ -39,6 +39,9 @@ else
 
                             <dt class="col-6 text-secondary fw-semibold">Quantidade de Itens</dt>
                             <dd class="col-6 mb-0 text-break">@lc.Quantidade</dd>
+
+                            <dt class="col-6 text-secondary fw-semibold">Preco Total</dt>
+                            <dd class="col-6 mb-0 text-break">@lc.PrecoTotal.ToString("C2")</dd>
 
                             <dt class="col-6 text-secondary fw-semibold">Status</dt>
                             <dd class="col-6 mb-0 text-break">@lc.StatusLista</dd>
