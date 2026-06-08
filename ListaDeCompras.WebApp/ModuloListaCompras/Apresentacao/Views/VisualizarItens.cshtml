@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Titulo = "Visualizar Itens";
+}
+
+@model ListarItensViewModel;
+
+@if (TempData["MensagemErro"] is string mensagemErro)
+{
+    <div class="alert alert-danger border-start border-danger border-4 rounded-3" role="alert">
+        @mensagemErro
+    </div>
+}
+
+<div class="card border-primary-subtle shadow-sm mx-auto p-3">
+    <nav class="navbar navbar-expand-lg bg-white mb-2 mx-2 pb-0">
+        <h3 class="navbar-brand fw-semibold">@Model.Nome</h3>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+            <div class="navbar-nav ms-auto">
+                <a class="btn btn-outline-primary rounded-pill px-3 ms-2" asp-action="AdicionarItem" asp-route-id="@Model.Id">Adicionar Item</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 ms-2" asp-action="RemoverItem" asp-route-id="@Model.Id">Remover Item</a>
+            </div>
+        </div>
+    </nav>
+
+    @if (Model.Itens.Count == 0)
+    {
+        <div class="alert alert-primary border-start border-primary border-2 rounded-3 mb-2 mx-2" role="alert">
+            Nenhum item adicionado.
+        </div>
+    }
+    else
+    {
+        <div class="rounded-3 overflow-hidden border border-primary-subtle mx-2 mb-2">
+            <table class="table table-hover table-sm table-borderless table-striped border-primary-subtle mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var il in Model.Itens)
+                    {
+                        <tr>
+                            <td>@il.Produto</td>
+                            <td>@il.Categoria</td>
+                            <td>@il.Quantidade.ToString("F2")</td>
+                            <td>@il.Preco.ToString("C2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <div class="d-flex justify-content-center">
+        <span class="flex-fill px-2 pt-2"><span class="fw-semibold">Data de criação:</span> @Model.DataCriacao.ToString("dd/MM/yyyy")</span>
+        <span class="flex-fill px-2 pt-2"><span class="fw-semibold">Total de Itens:</span> @Model.Quantidade</span>
+        <span class="flex-fill px-2 pt-2"><span class="fw-semibold">Preço total:</span> @Model.PrecoTotal.ToString("C2")</span>
+        <span class="flex-fill px-2 pt-2"><span class="fw-semibold">Status:</span> @Model.StatusLista</span>
+        <a class="flex-fill px-0 btn btn-outline-primary rounded-pill" asp-action="Listar">Voltar</a>
+    </div>
+</div>
+

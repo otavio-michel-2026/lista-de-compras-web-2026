@@ -44,16 +44,20 @@ public class ListaCompras : EntidadeBase<ListaCompras>
             itemExistente.AlterarQuantidade(item.Quantidade);
     }
 
-    public void RemoverItem(Guid produtoId, decimal quantidade)
+    public bool RemoverItem(Guid produtoId, decimal quantidade)
     {
         ItemDaLista? itemExistente = Itens.FirstOrDefault(i => i.Produto.Id == produtoId);
-
+        
         if (itemExistente is null)
-            return;
+            return false;
         else if (itemExistente.Quantidade > quantidade)
             itemExistente.AlterarQuantidade(-quantidade);
+        else if (itemExistente.Quantidade == quantidade)
+            return Itens.Remove(itemExistente);
         else
-            Itens.Remove(itemExistente);
+            return false;
+
+        return true;
     }
 
     public void ConcluirItem(Guid produtoId)

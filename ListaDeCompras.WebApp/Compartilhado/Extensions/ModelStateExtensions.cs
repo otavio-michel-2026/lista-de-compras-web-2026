@@ -9,7 +9,9 @@ public static class ModelStateExtensions
     {
         foreach (var e in result.Errors)
         {
-            string c = e.Metadata["Campo"] as string ?? string.Empty;
+            e.Metadata.TryGetValue("Campo", out object? campo);
+
+            string c = campo as string ?? string.Empty;
             modelState.AddModelError(c, e.Message);
         }
     }

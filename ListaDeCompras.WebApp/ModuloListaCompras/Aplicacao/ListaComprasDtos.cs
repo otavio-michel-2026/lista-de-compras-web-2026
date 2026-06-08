@@ -7,8 +7,11 @@ public record DetalhesListaComprasDto(
     string Nome,
     DateTime DataCriacao,
     int Quantidade,
-    StatusLista StatusLista
+    decimal PrecoTotal,
+    StatusLista StatusLista,
+    List<ItemDaListaDto>? Itens = null
 );
+
 public record CadastrarListaComprasDto(
     string Nome
 );
@@ -16,4 +19,18 @@ public record CadastrarListaComprasDto(
 public record EditarListaComprasDto(
     Guid Id,
     string Nome
+);
+
+public record ItemDaListaDto(
+    bool Concluido,
+    string Produto,
+    string Categoria,
+    decimal Quantidade,
+    decimal Preco
+);
+
+public record GerenciarItemDto(
+    Guid Id,
+    Guid ProdutoId,
+    decimal Quantidade
 );
