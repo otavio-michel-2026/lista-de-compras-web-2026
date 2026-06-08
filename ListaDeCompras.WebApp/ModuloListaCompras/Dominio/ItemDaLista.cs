@@ -21,6 +21,11 @@ public class ItemDaLista
         Quantidade += quantidade;
     }
 
+    public void DefinirQuantidade(decimal quantidade)
+    {
+        Quantidade = quantidade;
+    }
+
     public decimal CalcularPreco()
     {
         return Produto.Preco * Quantidade;

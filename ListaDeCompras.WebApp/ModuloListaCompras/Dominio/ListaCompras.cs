@@ -40,6 +40,11 @@ public class ListaCompras : EntidadeBase<ListaCompras>
 
         if (itemExistente is null)
             Itens.Add(item);
+        else if (itemExistente.Concluido)
+        {
+            itemExistente.Reabrir();
+            itemExistente.DefinirQuantidade(item.Quantidade);
+        }
         else
             itemExistente.AlterarQuantidade(item.Quantidade);
     }

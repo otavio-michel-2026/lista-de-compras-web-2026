@@ -23,6 +23,7 @@ public record EditarListaComprasDto(
 
 public record ItemDaListaDto(
     bool Concluido,
+    Guid ProdutoId,
     string Produto,
     string Categoria,
     decimal Quantidade,

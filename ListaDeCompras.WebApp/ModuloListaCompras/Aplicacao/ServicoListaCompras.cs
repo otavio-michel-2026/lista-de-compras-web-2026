@@ -33,8 +33,8 @@ public class ServicoListaCompras(IRepositorioListaCompras repositorioLista, IRep
 
         if (lista is null)
             return Result.Fail("Lista de compras não encontrada.");
-        if (lista.TemItens)
-            return Result.Fail("Não é possível remover uma lista quem tem itens.");
+        if (lista.Itens.Any(i => !i.Concluido))
+            return Result.Fail("Não é possível remover uma lista que tem itens abertos.");
 
         repositorioLista.Excluir(id);
 
@@ -84,6 +84,21 @@ public class ServicoListaCompras(IRepositorioListaCompras repositorioLista, IRep
         return Result.Ok();
     }
 
+    public Result ConcluirItem(Guid id, Guid produtoId)
+    {
+        var lista = repositorioLista.Selecionar(id);
+
+        if (lista is null)
+            return Result.Fail("Lista de compras não encontrada.");
+
+        if (lista.Itens.All(i => i.Produto.Id != produtoId))
+            return Result.Fail("Item não encontrado na lista.");
+
+        repositorioLista.ConcluirItem(id, produtoId);
+
+        return Result.Ok();
+    }
+
     public List<DetalhesListaComprasDto> Selecionar()
     {
         return repositorioLista.Registros.Select(lc => new DetalhesListaComprasDto(lc.Id, lc.Nome, lc.DataCriacao, lc.TotalItens, lc.CalcularTotal(), lc.StatusLista)).ToList();
@@ -109,7 +124,7 @@ public class ServicoListaCompras(IRepositorioListaCompras repositorioLista, IRep
         List<ItemDaListaDto>? itens = null;
 
         if (incluirItens)
-            itens = lista.Itens.Select(il => new ItemDaListaDto(il.Concluido, il.Produto.Nome, il.Produto.Categoria.Nome, il.Quantidade, il.CalcularPreco())).ToList();
+            itens = lista.Itens.Select(il => new ItemDaListaDto(il.Concluido, il.Produto.Id, il.Produto.Nome, il.Produto.Categoria.Nome, il.Quantidade, il.CalcularPreco())).ToList();
 
         return Result.Ok(new DetalhesListaComprasDto(lista.Id, lista.Nome, lista.DataCriacao, lista.TotalItens, lista.CalcularTotal(), lista.StatusLista, itens));
     }

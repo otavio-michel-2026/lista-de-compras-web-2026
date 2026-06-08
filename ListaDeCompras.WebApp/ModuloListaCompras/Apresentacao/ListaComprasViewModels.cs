@@ -47,6 +47,7 @@ public record ListarItensViewModel(
 
 public record ItemDaListaViewModel(
     bool Concluido,
+    Guid ProdutoId,
     string Produto,
     string Categoria,
     decimal Quantidade,
@@ -72,3 +73,11 @@ public record GerenciarItemViewModel(
             yield return new ValidationResult("O campo \"Produto\" deve ser preenchido.", [nameof(ProdutoId)]);
     }
 }
+
+public record AtualizarItemViewModel(
+    bool Concluido,
+    string Produto,
+    string Categoria,
+    decimal Quantidade,
+    decimal Preco
+);

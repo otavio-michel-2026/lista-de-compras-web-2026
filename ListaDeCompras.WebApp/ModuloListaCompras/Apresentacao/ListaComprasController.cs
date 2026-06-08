@@ -199,6 +199,17 @@ public class ListaComprasController(ServicoListaCompras servicoLista, ServicoPro
         return RedirectToAction(nameof(VisualizarItens), new { id });
     }
 
+    [HttpPost("{id:guid}/ConcluirItem/{produtoId:guid}")]
+    public ActionResult ConcluirItem(Guid id, Guid produtoId)
+    {
+        var resultado = servicoLista.ConcluirItem(id, produtoId);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
+
+        return RedirectToAction(nameof(VisualizarItens), new { id });
+    }
+
     private List<SelectListItem> SelecionarProdutos()
     {
         var dtos = servicoProduto.SelecionarTodos();

@@ -43,6 +43,8 @@
                         <th scope="col">Categoria</th>
                         <th scope="col">Quantidade</th>
                         <th scope="col">Preço</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" class="text-end">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +55,28 @@
                             <td>@il.Categoria</td>
                             <td>@il.Quantidade.ToString("F2")</td>
                             <td>@il.Preco.ToString("C2")</td>
+                            <td>
+                                @if (il.Concluido)
+                                {
+                                    <span class="badge text-bg-success">Concluído</span>
+                                }
+                                else
+                                {
+                                    <span class="badge text-bg-secondary">Aberto</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                @if (il.Concluido)
+                                {
+                                    <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" disabled>Concluído</button>
+                                }
+                                else
+                                {
+                                    <form asp-action="ConcluirItem" asp-route-id="@Model.Id" asp-route-produtoId="@il.ProdutoId" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-success btn-sm rounded-pill px-3">Concluir</button>
+                                    </form>
+                                }
+                            </td>
                         </tr>
                     }
                 </tbody>

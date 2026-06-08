@@ -6,4 +6,5 @@ public interface IRepositorioListaCompras : IRepositorio<ListaCompras>
 {
     bool AdicionarItem(Guid id, ItemDaLista item);
     bool RemoverItem(Guid id, Guid produtoId, decimal quantidade);
+    bool ConcluirItem(Guid id, Guid produtoId);
 }

@@ -41,4 +41,17 @@ public class RepositorioListaCompras : RepositorioBase<ListaCompras>, IRepositor
         else
             return false;
     }
+
+    public bool ConcluirItem(Guid id, Guid produtoId)
+    {
+        var lista = Selecionar(id);
+
+        if (lista is null)
+            return false;
+
+        lista.ConcluirItem(produtoId);
+        contexto.Salvar();
+
+        return true;
+    }
 }
