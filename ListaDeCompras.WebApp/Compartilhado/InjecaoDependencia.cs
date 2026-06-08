@@ -1,5 +1,8 @@
-using ListaDeCompras.WebApp.Compartilhado.ModuloBase;
 using ListaDeCompras.WebApp.ModuloCategoria;
+using ListaDeCompras.WebApp.ModuloListaCompras.Aplicacao;
+using ListaDeCompras.WebApp.ModuloListaCompras.Apresentacao;
+using ListaDeCompras.WebApp.ModuloListaCompras.Dominio;
+using ListaDeCompras.WebApp.ModuloListaCompras.Infra;
 using ListaDeCompras.WebApp.ModuloProduto;
 
 namespace ListaDeCompras.WebApp.Compartilhado;
@@ -16,6 +19,7 @@ public static class InjecaoDependencia
 
             // Views dos módulos: /ModuloCaixa/Apresentacao/Views/Listar.cshtml
             options.ViewLocationFormats.Add("/Modulo{1}/Views/{0}.cshtml");
+            options.ViewLocationFormats.Add("/Modulo{1}/Apresentacao/Views/{0}.cshtml");
 
             // Views compartilhadas: /Compartilhado/Apresentacao/Views/_Layout.cshtml
             options.ViewLocationFormats.Add("/Compartilhado/Views/{0}.cshtml");
@@ -26,6 +30,7 @@ public static class InjecaoDependencia
             //config.AddProfile<(*)Profile>();
             config.AddProfile<ProdutoProfile>();
             config.AddProfile<CategoriaProfile>();
+            config.AddProfile<ListaComprasProfile>();
         });
     }
 
@@ -43,6 +48,7 @@ public static class InjecaoDependencia
         //services.AddScoped<IRepositorio(*), Repositorio(*)>();
         services.AddScoped<IRepositorioCategoria, RepositorioCategoria>();
         services.AddScoped<IRepositorioProduto, RepositorioProduto>();
+        services.AddScoped<IRepositorioListaCompras, RepositorioListaCompras>();
     }
 
     // Camada de Aplicação
@@ -51,5 +57,6 @@ public static class InjecaoDependencia
         //services.AddScoped<Servico(*)>();
         services.AddScoped<ServicoProduto>();
         services.AddScoped<ServicoCategoria>();
+        services.AddScoped<ServicoListaCompras>();
     }
 }

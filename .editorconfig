@@ -12,3 +12,6 @@ indent_style = space
 
 [*.{cs,vb}]
 dotnet_diagnostic.IDE0290.severity = none
+
+# IDE0160: Convert to block scoped namespace
+csharp_style_namespace_declarations = file_scoped

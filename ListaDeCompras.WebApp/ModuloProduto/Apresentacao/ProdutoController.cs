@@ -4,21 +4,21 @@ using ListaDeCompras.WebApp.Compartilhado.Extensions;
 using ListaDeCompras.WebApp.ModuloCategoria;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ListaDeCompras.WebApp.ModuloProduto
+namespace ListaDeCompras.WebApp.ModuloProduto;
 //Apresentação
 
+
+public class ProdutoController(ServicoProduto servicoProduto, IMapper mapeador, ServicoCategoria servicoCategoria) : Controller
 {
-    public class ProdutoController(ServicoProduto servicoProduto, IMapper mapeador, ServicoCategoria servicoCategoria) : Controller
+    [HttpGet]
+    public ActionResult Listar()
     {
-        [HttpGet]
-        public ActionResult Listar()
-        {
-            var dtos = servicoProduto.SelecionarTodos();
+        var dtos = servicoProduto.SelecionarTodos();
 
             var listarVms = mapeador.Map<List<ProdutoMostrarViewModel>>(dtos);
 
-            return View(listarVms);
-        }
+        return View(listarVms);
+    }
 
         [HttpGet]
         public ActionResult Cadastrar()
@@ -31,8 +31,8 @@ namespace ListaDeCompras.WebApp.ModuloProduto
                 0
             );
 
-            return View(cadastrarVm);
-        }
+        return View(cadastrarVm);
+    }
 
         [HttpPost]
         public ActionResult Cadastrar(ProdutoViewModel vm)
@@ -40,31 +40,31 @@ namespace ListaDeCompras.WebApp.ModuloProduto
             if (!ModelState.IsValid)
                 return View(vm with { Categorias = SelecionarCategorias() });
 
-            var dto = mapeador.Map<CadastrarProdutoDto>(vm);
+        var dto = mapeador.Map<CadastrarProdutoDto>(vm);
 
-            Result resultado = servicoProduto.Cadastrar(dto);
+        Result resultado = servicoProduto.Cadastrar(dto);
 
-            if (resultado.IsFailed)
-            {
-                ModelState.AddModelError(resultado);
+        if (resultado.IsFailed)
+        {
+            ModelState.AddModelError(resultado);
 
-                return View(vm with { Categorias = SelecionarCategorias() });
-            }
+            return View(vm with { Categorias = SelecionarCategorias() });
+        }
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    [HttpGet]
+    public ActionResult Editar(Guid id)
+    {
+        var resultado = servicoProduto.SelecionarPorId(id);
+
+        if (resultado.IsFailed)
+        {
+            TempData.AddErrorMessage(resultado);
 
             return RedirectToAction(nameof(Listar));
         }
-
-        [HttpGet]
-        public ActionResult Editar(Guid id)
-        {
-            var resultado = servicoProduto.SelecionarPorId(id);
-
-            if (resultado.IsFailed)
-            {
-                TempData.AddErrorMessage(resultado);
-
-                return RedirectToAction(nameof(Listar));
-            }
 
             var vm = mapeador.Map<ProdutoViewModel>(resultado.Value);
 
@@ -89,39 +89,38 @@ namespace ListaDeCompras.WebApp.ModuloProduto
             return RedirectToAction(nameof(Listar));
         }
 
-        [HttpGet]
-        public ActionResult Excluir(Guid id)
+    [HttpGet]
+    public ActionResult Excluir(Guid id)
+    {
+        var resultado = servicoProduto.SelecionarPorId(id);
+
+        if (resultado.IsFailed)
         {
-            var resultado = servicoProduto.SelecionarPorId(id);
+            TempData.AddErrorMessage(resultado);
 
-            if (resultado.IsFailed)
-            {
-                TempData.AddErrorMessage(resultado);
-
-                return RedirectToAction(nameof(Listar));
-            }
+            return RedirectToAction(nameof(Listar));
+        }
 
             var vm = mapeador.Map<ProdutoMostrarViewModel>(resultado.Value);
 
-            return View(vm);
-        }
+        return View(vm);
+    }
 
         [HttpPost]
         public ActionResult Excluir(ProdutoMostrarViewModel vm)
         {
             Result resultado = servicoProduto.Excluir(vm.Id);
 
-            if (resultado.IsFailed)
-                TempData.AddErrorMessage(resultado);
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
 
-            return RedirectToAction(nameof(Listar));
-        }
+        return RedirectToAction(nameof(Listar));
+    }
 
         private List<OpcaoCategoriaViewModel> SelecionarCategorias()
         {
             List<CategoriaDto> dtos = servicoCategoria.SelecionarTodos();
 
-            return dtos.Select(dto => mapeador.Map<OpcaoCategoriaViewModel>(dto)).ToList();
-        }
+        return dtos.Select(dto => mapeador.Map<OpcaoCategoriaViewModel>(dto)).ToList();
     }
 }
