@@ -1,4 +1,7 @@
-using ListaDeCompras.WebApp.ModuloCategoria;
+using ListaDeCompras.WebApp.ModuloCategoria.Aplicacao;
+using ListaDeCompras.WebApp.ModuloCategoria.Apresentacao;
+using ListaDeCompras.WebApp.ModuloCategoria.Dominio;
+using ListaDeCompras.WebApp.ModuloCategoria.Infra;
 using ListaDeCompras.WebApp.ModuloListaCompras.Aplicacao;
 using ListaDeCompras.WebApp.ModuloListaCompras.Apresentacao;
 using ListaDeCompras.WebApp.ModuloListaCompras.Dominio;

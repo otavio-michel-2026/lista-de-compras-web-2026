@@ -1,9 +1,10 @@
 using AutoMapper;
 using FluentResults;
 using ListaDeCompras.WebApp.Compartilhado.Extensions;
+using ListaDeCompras.WebApp.ModuloCategoria.Aplicacao;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ListaDeCompras.WebApp.ModuloCategoria;
+namespace ListaDeCompras.WebApp.ModuloCategoria.Apresentacao;
 //Apresentação
 
 public class CategoriaController(ServicoCategoria servicoCategoria, IMapper mapeador) : Controller

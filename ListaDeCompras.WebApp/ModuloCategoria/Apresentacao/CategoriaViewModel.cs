@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ListaDeCompras.WebApp.ModuloCategoria;
+namespace ListaDeCompras.WebApp.ModuloCategoria.Apresentacao;
 //Apresentação
 
 public record CategoriaViewModel

@@ -1,7 +1,8 @@
 using AutoMapper;
 using FluentResults;
+using ListaDeCompras.WebApp.ModuloCategoria.Dominio;
 
-namespace ListaDeCompras.WebApp.ModuloCategoria;
+namespace ListaDeCompras.WebApp.ModuloCategoria.Aplicacao;
 //Aplicação
 
 public class ServicoCategoria

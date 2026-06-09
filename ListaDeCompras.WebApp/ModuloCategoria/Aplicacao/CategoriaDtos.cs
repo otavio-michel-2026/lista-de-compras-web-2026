@@ -1,4 +1,4 @@
-namespace ListaDeCompras.WebApp.ModuloCategoria;
+namespace ListaDeCompras.WebApp.ModuloCategoria.Aplicacao;
 //Aplicação
 
 public record CategoriaDto(
