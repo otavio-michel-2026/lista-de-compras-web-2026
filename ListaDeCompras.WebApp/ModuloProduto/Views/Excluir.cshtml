@@ -6,32 +6,31 @@
 @model ProdutoMostrarViewModel;
 
 <form class="card border-primary-subtle shadow-sm mx-auto p-4" style="max-width: 620px;" asp-action="Excluir" asp-route-id="@Model.Id" method="post">
-    <div class="alert alert-primary border-start border-primary border-4 rounded-3" role="alert">
-        Deseja realmente excluir este produto?
+
+    <div class="alert alert-primary border-start border-primary border-2 rounded-3" role="alert">
+        Tem certeza que deseja excluir esta lista de comrpas?
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Nome" class="form-label fw-semibold text-primary text-uppercase small">Nome</label>
-        <input asp-for="Nome" type="text" class="form-control" disabled>
-    </div>
+    <dl class="row mb-0">
+        <dt class="col-sm-4 fw-semibold text-primary text-uppercase small">ID</dt>
+        <dd class="col-sm-8">@Model.Id</dd>
 
-    <div class="mb-3">
-        <label asp-for="CategoriaNome" class="form-label fw-semibold text-primary text-uppercase small">Categoria</label>
-        <input asp-for="CategoriaNome" type="text" class="form-control" disabled>
-    </div>
+        <dt class="col-sm-4 fw-semibold text-primary text-uppercase small">Nome</dt>
+        <dd class="col-sm-8">@Model.Nome</dd>
 
-    <div class="mb-3">
-        <label asp-for="UnidadeDeMedida" class="form-label fw-semibold text-primary text-uppercase small">Unidade de Medida</label>
-        <input asp-for="UnidadeDeMedida" type="text" class="form-control" disabled>
-    </div>
+        <dt class="col-sm-4 fw-semibold text-primary text-uppercase small">Data de Criação</dt>
+        <dd class="col-sm-8">@Model.CategoriaNome</dd>
 
-    <div class="mb-3">
-        <label asp-for="Preco" class="form-label fw-semibold text-primary text-uppercase small">Preço</label>
-        <input asp-for="Preco" type="number" step="0.01" class="form-control" disabled>
-    </div>
+        <dt class="col-sm-4 fw-semibold text-primary text-uppercase small">Quantidade de Itens</dt>
+        <dd class="col-sm-8">@Model.UnidadeDeMedida</dd>
+
+        <dt class="col-sm-4 fw-semibold text-primary text-uppercase small">Status</dt>
+        <dd class="col-sm-8">@Model.Preco.ToString("C2")</dd>
+    </dl>
 
     <div class="d-flex justify-content-end gap-2 mt-4">
         <a class="btn btn-outline-primary rounded-pill px-4" asp-action="Listar">Voltar</a>
         <button class="btn btn-primary rounded-pill px-4" type="submit">Confirmar</button>
     </div>
 </form>
+

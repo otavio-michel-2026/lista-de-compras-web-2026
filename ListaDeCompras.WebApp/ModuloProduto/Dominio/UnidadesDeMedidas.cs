@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ListaDeCompras.WebApp.ModuloProduto;
+namespace ListaDeCompras.WebApp.ModuloProduto.Dominio;
 //Dominio
 
 public enum UnidadeDeMedida

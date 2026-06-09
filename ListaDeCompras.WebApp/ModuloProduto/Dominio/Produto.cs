@@ -1,7 +1,7 @@
 using ListaDeCompras.WebApp.Compartilhado.ModuloBase;
 using ListaDeCompras.WebApp.ModuloCategoria;
 
-namespace ListaDeCompras.WebApp.ModuloProduto;
+namespace ListaDeCompras.WebApp.ModuloProduto.Dominio;
 //Dominio
 
 public class Produto : EntidadeBase<Produto>

@@ -3,7 +3,10 @@ using ListaDeCompras.WebApp.ModuloListaCompras.Aplicacao;
 using ListaDeCompras.WebApp.ModuloListaCompras.Apresentacao;
 using ListaDeCompras.WebApp.ModuloListaCompras.Dominio;
 using ListaDeCompras.WebApp.ModuloListaCompras.Infra;
-using ListaDeCompras.WebApp.ModuloProduto;
+using ListaDeCompras.WebApp.ModuloProduto.Aplicacao;
+using ListaDeCompras.WebApp.ModuloProduto.Apresentacao;
+using ListaDeCompras.WebApp.ModuloProduto.Dominio;
+using ListaDeCompras.WebApp.ModuloProduto.Infra;
 
 namespace ListaDeCompras.WebApp.Compartilhado;
 

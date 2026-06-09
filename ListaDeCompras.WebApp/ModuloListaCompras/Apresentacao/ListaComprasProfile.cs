@@ -1,7 +1,7 @@
 using AutoMapper;
 using ListaDeCompras.WebApp.ModuloListaCompras.Aplicacao;
 using ListaDeCompras.WebApp.ModuloListaCompras.Dominio;
-using ListaDeCompras.WebApp.ModuloProduto;
+using ListaDeCompras.WebApp.ModuloProduto.Aplicacao;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ListaDeCompras.WebApp.ModuloListaCompras.Apresentacao;

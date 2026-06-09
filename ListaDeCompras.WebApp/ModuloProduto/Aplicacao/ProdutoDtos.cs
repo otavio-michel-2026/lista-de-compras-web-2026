@@ -1,4 +1,6 @@
-namespace ListaDeCompras.WebApp.ModuloProduto;
+using ListaDeCompras.WebApp.ModuloProduto.Dominio;
+
+namespace ListaDeCompras.WebApp.ModuloProduto.Aplicacao;
 //Aplicação
 
 public record CadastrarProdutoDto(

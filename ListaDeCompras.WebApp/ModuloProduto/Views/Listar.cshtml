@@ -42,7 +42,7 @@ else
                         <td>@p.Nome</td>
                         <td>@p.CategoriaNome</td>
                         <td>@p.UnidadeDeMedida</td>
-                        <td>@p.Preco</td>
+                        <td>@p.Preco.ToString("C2")</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a class="btn btn-outline-primary btn-sm rounded-pill px-3" asp-action="Editar" asp-route-id="@p.Id">Editar</a>

@@ -1,7 +1,8 @@
 using ListaDeCompras.WebApp.Compartilhado;
 using ListaDeCompras.WebApp.Compartilhado.ModuloBase;
+using ListaDeCompras.WebApp.ModuloProduto.Dominio;
 
-namespace ListaDeCompras.WebApp.ModuloProduto;
+namespace ListaDeCompras.WebApp.ModuloProduto.Infra;
 //Infra
 
 public class RepositorioProduto : RepositorioBase<Produto>, IRepositorioProduto

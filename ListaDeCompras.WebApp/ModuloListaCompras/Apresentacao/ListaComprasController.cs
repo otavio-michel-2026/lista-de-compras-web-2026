@@ -2,7 +2,7 @@ using AutoMapper;
 using FluentResults;
 using ListaDeCompras.WebApp.Compartilhado.Extensions;
 using ListaDeCompras.WebApp.ModuloListaCompras.Aplicacao;
-using ListaDeCompras.WebApp.ModuloProduto;
+using ListaDeCompras.WebApp.ModuloProduto.Aplicacao;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

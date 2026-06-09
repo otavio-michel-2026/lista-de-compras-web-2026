@@ -1,9 +1,8 @@
-using System.Reflection.Metadata.Ecma335;
-using AutoMapper;
 using FluentResults;
 using ListaDeCompras.WebApp.ModuloCategoria;
+using ListaDeCompras.WebApp.ModuloProduto.Dominio;
 
-namespace ListaDeCompras.WebApp.ModuloProduto;
+namespace ListaDeCompras.WebApp.ModuloProduto.Aplicacao;
 
 public class ServicoProduto
 {

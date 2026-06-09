@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using AutoMapper.Internal.Mappers;
+using ListaDeCompras.WebApp.ModuloProduto.Dominio;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace ListaDeCompras.WebApp.ModuloProduto;
+namespace ListaDeCompras.WebApp.ModuloProduto.Apresentacao;
 //Apresentação
 
 public record OpcaoCategoriaViewModel(

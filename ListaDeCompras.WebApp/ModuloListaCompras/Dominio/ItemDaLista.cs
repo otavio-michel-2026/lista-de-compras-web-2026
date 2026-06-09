@@ -1,4 +1,4 @@
-using ListaDeCompras.WebApp.ModuloProduto;
+using ListaDeCompras.WebApp.ModuloProduto.Dominio;
 
 namespace ListaDeCompras.WebApp.ModuloListaCompras.Dominio;
 
