@@ -57,7 +57,7 @@ public class ServicoProduto
         bool conseguiuEditar = repositorioProduto.Editar(dto.Id, produtoAtualizado);
 
         if (!conseguiuEditar)
-            return Result.Fail("Produto não encontrado.");
+            return Result.Fail("Ocorreu um erro ao produto ao ser editado.");
 
         return Result.Ok();
     }
